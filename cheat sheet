@@ -1,0 +1,134 @@
+cheat sheet
+
+Acceso a Mysql
+
+mysql -uadmin -p`cat /etc/psa/.psa.shadow`
+
+
+Plesk 
+
+Limpiar cache  en Ubuntu 
+sudo apt-get autoclean
+sudo apt-get autoremove
+
+
+mailq | egrep -o [A-Z0-9]{11} | xargs -I{} postcat -q {} | egrep -B100 -i "list8.php" | egrep -i deferred | egrep -o [A-Z0-9]{11} | xargs -I{} postsuper -d {}
+for mail in $(mailq|egrep ^[A-Z,0-9]{10}|tr -s ' 's|cut -d ' ' -f  1|tr -d '*'); do postcat -q $mail|grep "general.php" && echo "borrando $mail" && postsuper -d $mail; done
+for mail in $(mailq|egrep ^[A-Z,0-9]{10}|tr -s ' 's|cut -d ' ' -f  1|tr -d '*'); do postcat -q $mail|grep "" && echo "borrando $mail" && postsuper -d $mail; done
+
+grep POST  /var/www/vhosts/*/statistics/logs/access_log
+
+
+ls -lshart /var/www/vhosts/*/httpdocs/ > /home/cmontesinos/listadoPermisosCease.txt 
+
+
+
+mail
+
+ *
+for mail in $(mailq|grep support@dhl.de|tr -s ' '|cut -f 1 -d ' '); do postsuper -d $mail; done
+
+
+
+for mail in $(mailq|grep grep "alias.php"|tr -s ' '|cut -f 1 -d ' '); do postsuper -d $mail; done
+
+Conseguir contraseña admin para panel web plesk: srv20057:~# /usr/local/psa/bin/admin --show-password
+o en los legacy  de celingest   cat /etc/psa/.psa.shadow
+
+Ruta logs mail de plesk /usr/local/psa/var/log/maillog
+
+
+Rotato y comprimido de logs 
+
+cat mail.log | gzip -9f > mail.log.$(date +"%m-%d-%y").gz && cat /dev/null > mail.log
+
+touch claranet_check_page.php << "<?php echo "<HTML>"; echo "<HEAD>"; echo "<TITLE>Claranet Check Page</TITLE>"; echo "</HEAD>"; echo "<BODY><H1>"; echo "Claranet  check Page. Please don't delete me!"; echo "<!--OK_CHECK_ZBX-->"; echo "</H1></BODY>"; echo "</HTML>"; ?>"
+
+mysqlcheck --auto-repair NOMBREBASEDEDATOS
+
+
+mysql -uadmin -p`cat /etc/psa/.psa.shadow` psa -e 'select a.id, clients.login as client, sys_users.login as ftp, mail.mail_name, pd_users.login as pd_users, a.password from accounts as a left outer join clients on a.id=clients.account_id left outer join sys_users on a.id=sys_users.account_id left outer join mail on a.id=mail.account_id left outer join pd_users on a.id=pd_users.account_id;'
+
+
+
+SELECT DB_NAME(dbid) AS DBName,
+COUNT(dbid) AS NumberOfConnections,
+loginame
+FROM    sys.sysprocesses
+GROUP BY dbid, loginame
+ORDER BY DB_NAME(dbid)
+
+
+partx -a (detectar nueva particion sin reboot)
+
+
+
+iptables -A INPUT -p tcp -s 90.74.0.68 --dport 8443 -j ACCEPT
+
+
+Fuente: https://www.enmimaquinafunciona.com/pregunta/8962/iptables-permitir-el-acceso-ssh-solo-nada-mas-en-o-fuera
+
+
+count the outcoming  connections : netstat -nputw |wc -l
+
+
+20170126015049
+
+
+
+/etc/network/if-up/000Firewall para hacer los cambios persistentes
+
+
+iptables -I INPUT -s 46.183.220.88 -j DROP
+
+iptables -I OUTPUT -s 46.183.220.88 -j DROP
+
+
+gzip -9f product-offering.log.8 
+
+Para acceder a los pfsense es el usuario CLESVDC01
+
+
+find /root/.cache/duplicity/e4b329b3ce1f531b0baf8e9cea70087d -mtime +720 -exec rm {} \;
+
+
+[root@ks3269136 ~]# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+rootfs                9.8G  5.1G  4.3G  55% /
+
+
+
+pablo.bote@studio-atw.com    ^-UQX]SOIm2zn
+
+5%(!,7tW
+
+TROLLOTEA
+
+CUIDADO CON VOLOTEA A LA HORA DE CREAR TICKETS  , EL PROYECTO HA DE SER EL CORRECTO 
+
+css01 user pass: teampass
+
+
+
+AÑADIR LAS INTERVENCIONES REALIZADAS AL EXCEL
+
+
+
+Jdmd?935   Password de rprieto@ahgt.es
+
+
+
+Feb  8 15:41:15 plesk-1 before-queue[8133]: call_handlers: call executable = '/usr/local/psa/handlers/info/10-spf-cXRsGt/executable'
+Feb  8 15:41:15 plesk-1 spf filter[8135]: Starting spf filter...
+Feb  8 15:41:15 plesk-1 spf filter[8135]: Error code: (2) Could not find a valid SPF record
+Feb  8 15:41:15 plesk-1 spf filter[8135]: Failed to query MAIL-FROM: No DNS data for 'cambiateaip.com'.
+
+
+
+for file in $(ls catalina.*.log); do cat $file | gzip -9f > $file.000054.$(date +"%m-%d-%y").gz
+
+for file in $(ls *.php ); do cat $file |  grep "swimming" && chmod 0000  && mv $file /home/cmontesinos/malware; done
+
+
+
+catalina.*.log
